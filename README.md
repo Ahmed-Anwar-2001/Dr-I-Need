@@ -9,3 +9,10 @@ This is my source code for a Doctor Recommending Website
 -> Access to Hospital admins to edit Doctor info practising in their Hospital.  
 -> Elaborate User profile  
 -> Collect medical related news through webscrapping  
+
+
+
+Checkout the website hosted at pythonanywhere.com-  
+drineed.pythonanywhere.com  
+
+The website doesn't contain the news content due to space limitations for free hosting
