@@ -1,0 +1,653 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Doctor Recommendations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        }
+    body{
+        background:  url("/static/images/wasi.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        flex: none;
+    }
+    a.nav-link{
+      color: white;
+    }
+    a.nav-link:hover,a.nav-link.active:hover{
+        color: aqua;
+        
+    }
+    #nl1::after{
+        content: " ";
+        width: 0%;
+        height: 2px;
+        background: aqua;
+        display: block;
+        margin: auto;
+        transition: 0.5s;
+    }
+    #nl1:hover::after{
+        width: 100%;
+    }
+    .btn.btn-primary{
+        color: white;
+        background: black;
+    }
+
+
+
+    
+    
+    
+
+  
+  </style>
+</head>
+  <body>
+
+
+    <!--Navigation Bar Start-->
+    <nav class="navbar fixed-top navbar-expand-sm navbar-light" style="background: rgba(0,0,0,0.5);">
+      <div class="container">
+		<a href="/about" class="navbar-brand mb-0 h1" style="color: white;">
+			
+				<img class="d-inline-block align-top" src="{% static 'images/s3.svg'%}" alt="" width="30" height="30" >
+				Dr. I Need
+			
+		</a>
+    
+    <button type="button" 
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    class="navbar-toggler"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>    
+    </button>
+    <div class="container">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item" id="nl1">
+          <a href="/home" class="nav-link" >
+            HOME
+          </a>
+        </li>
+        <li class="nav-item" id="nl1">
+          <a href="/about" class="nav-link">
+            ABOUT
+          </a>
+        </li>
+        <li class="nav-item active" id="nl1">
+          <a href="/faq" class="nav-link">
+            FAQ
+          </a>
+        </li>
+        <li class="nav-item active" id="nl1">
+            <a href="find_d" class="nav-link">
+                SUGGESTIONS
+              </a>
+        </li>
+        <li class="nav-item active" id="nl1">
+            <a href="/news" class="nav-link">
+              NEWS
+            </a>
+        </li>
+        
+      </ul>
+      
+    </div>
+    </div>
+  
+    <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown"
+        role="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+          {{g}}
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a href="/profile" class="dropdown-item">Profile</a>
+            </li>
+            <li>
+              <a href="/bmi" class="dropdown-item">Check BMI</a>
+            </li>
+            <li>
+              <a href="/login" class="dropdown-item">Log Out</a>
+            </li>
+        </ul>
+      </li>
+    </ul></div>
+  </div>
+</nav>
+
+<!--Navigation Bar End-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section>
+    <br><br>
+    <div class="conatiner m-5" style="padding-top: 60px; padding-bottom: 120px; background: rgba(0,0,0,0); border-radius: 30px;">
+      <form method="POST">
+        {% csrf_token %}  
+      <div class="row gx-0">
+            <div class="col-lg text-center">
+                <p>
+                    <h1 style="color:white;">FIND THE DOCTOR YOU NEED</h1>
+                    <h3><a class="btn btn-primary" data-bs-toggle="collapse" href="#card0" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Get Started</a></h3>
+                </p>
+            </div>
+            <div class="row gx-0">
+              <div class="row">
+                  <div class="col">
+                      <div class="collapse multi-collapse" id="card0">
+                        <div class="card card-body">
+                          Do you have certain idea about what kind of doctor you are looking for?
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="collapse multi-collapse" id="card0">
+                        <div class="card card-body">
+                          <a type="button" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card10" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Yes, I am certain about what I'm searching for</a>
+                          <a type="button" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card100" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">I'm not quite sure</a>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+          </div>
+          <div class="row gx-0">
+            <div class="row">
+                <div class="col">
+                    <div class="collapse multi-collapse" id="card100">
+                      <div class="card card-body">
+                        Our suggestion is that it would be best to consult a doctor from 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="card100">
+                      <div class="card card-body">
+                        <input type="button" onclick="myFunction100()" id="dep100" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Internal Medicine" aria-expanded="false" aria-controls="multiCollapseExample1">
+                        
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+          <div class="row gx-0">
+            <div class="row">
+                <div class="col">
+                    <div class="collapse multi-collapse" id="card10">
+                      <div class="card card-body">
+                        Choose Department:
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="card10">
+                      <div class="card card-body">
+                        <a type="button" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Medicine</a>
+                        <a type="button" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card11" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Gynae</a>
+                        <a type="button" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card111" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Surgery</a>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col">
+                    <div class="collapse multi-collapse" id="card1">
+                      <div class="card card-body">
+                        Specialized doctor from which field are you looking for?
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="card1">
+                      <div class="card card-body">
+                        <input type="button" onclick="myFunction1()" id="dep1" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Neuro Medicine" aria-expanded="false" aria-controls="multiCollapseExample1">
+                        <input type="button" onclick="myFunction2()" id="dep2" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Endocrinology" aria-expanded="false" aria-controls="multiCollapseExample1">
+                        <input type="button" onclick="myFunction3()" id="dep3" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Respiratory/Chest Medicine"  aria-expanded="false" aria-controls="multiCollapseExample1">
+                        <input type="button" onclick="myFunction4()" id="dep4" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Cardiology" aria-expanded="false" aria-controls="multiCollapseExample1">
+                        <input type="button" onclick="myFunction5()" id="dep5" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Gastroenterology" aria-expanded="false"  aria-controls="multiCollapseExample1">
+                        <input type="button" onclick="myFunction6()" id="dep6" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Nephrology" aria-expanded="false"  aria-controls="multiCollapseExample1">
+                        <input type="button" onclick="myFunction7()" id="dep7" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Dermatology" aria-expanded="false"  aria-controls="multiCollapseExample1">
+                        <input type="button" onclick="myFunction8()" id="dep8" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Psychiatry" aria-expanded="false"  aria-controls="multiCollapseExample1">
+                        <input type="button" onclick="myFunction9()" id="dep9" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Oncology" aria-expanded="false"  aria-controls="multiCollapseExample1">
+                        <input type="button" onclick="myFunction10()" id="dep10" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Paediatric Medicine" aria-expanded="false"  aria-controls="multiCollapseExample1">
+                        
+                      </div>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                  <div class="collapse multi-collapse" id="card11">
+                    <div class="card card-body">
+                      Specialized doctor from which field are you looking for?
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="collapse multi-collapse" id="card11">
+                    <div class="card card-body">
+                      <input type="button" onclick="myFunction11()" id="dep11" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Gynae" aria-expanded="false" aria-controls="multiCollapseExample1">
+                      <input type="button" onclick="myFunction12()" id="dep12" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Obstetrics" aria-expanded="false" aria-controls="multiCollapseExample1">
+                      
+
+                    </div>
+                  </div>
+                </div>
+          </div>
+          <div class="row">
+            <div class="col">
+                <div class="collapse multi-collapse" id="card111">
+                  <div class="card card-body">
+                    Specialized doctor from which field are you looking for?
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="collapse multi-collapse" id="card111">
+                  <div class="card card-body">
+                    <input type="button" onclick="myFunction13()" id="dep13" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="General Surgery" aria-expanded="false" aria-controls="multiCollapseExample1">
+                    <input type="button" onclick="myFunction14()" id="dep14" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Neuro Surgery" aria-expanded="false" aria-controls="multiCollapseExample1"> 
+                    <input type="button" onclick="myFunction15()" id="dep15" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Ophthalmology" aria-expanded="false" aria-controls="multiCollapseExample1">
+                    <input type="button" onclick="myFunction16()" id="dep16" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Head Neck and ENT" aria-expanded="false" aria-controls="multiCollapseExample1"> 
+                    <input type="button" onclick="myFunction17()" id="dep17" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Thoracic Surgery" aria-expanded="false" aria-controls="multiCollapseExample1"> 
+                    <input type="button" onclick="myFunction18()" id="dep18" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Urology" aria-expanded="false" aria-controls="multiCollapseExample1">
+                    <input type="button" onclick="myFunction19()" id="dep19" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Vascular Surgery" aria-expanded="false" aria-controls="multiCollapseExample1"> 
+                    <input type="button" onclick="myFunction20()" id="dep20" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Orthopaedics" aria-expanded="false" aria-controls="multiCollapseExample1">
+                    <input type="button" onclick="myFunction21()" id="dep21" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card2" role="button" value="Paediatric Surgery" aria-expanded="false" aria-controls="multiCollapseExample1"> 
+                    
+
+                  </div>
+                </div>
+              </div>
+        </div>
+
+            
+        </div>
+      
+
+        <div class="row gx-0">
+            <div class="row">
+                <div class="col">
+                    <div class="collapse multi-collapse" id="card2">
+                      <div class="card card-body">
+                        Looking for the best doctors in your city or all-around the country?
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="card2">
+                      <div class="card card-body">
+                        <input type="button" onclick="myFunction22()" id="dep22" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card3" role="button" value="My city -{{city}}" aria-expanded="false" aria-controls="multiCollapseExample1">
+                        <input type="button" onclick="myFunction23()" id="dep23" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card3" role="button" value="Whole country" aria-expanded="false" aria-controls="multiCollapseExample1"> 
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class="row gx-0">
+            <div class="row">
+                <div class="col">
+                    <div class="collapse multi-collapse" id="card3">
+                      <div class="card card-body">
+                        Sort by Ratings/Fees?
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="card3">
+                      <div class="card card-body">
+                        <input type="button" onclick="myFunction24()" id="dep24" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card5" role="button" value="Ratings" aria-expanded="false" aria-controls="multiCollapseExample1">
+                        <input type="button" onclick="myFunction25()" id="dep25" class="btn btn-primary m-2" data-bs-toggle="collapse" href="#card5" role="button" value="Fees" aria-expanded="false" aria-controls="multiCollapseExample1">
+                        
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+        <div class="row gx-0">
+            <div class="row">
+                  <div class="col m-3">
+                    <div class="collapse multi-collapse" id="card5">
+                      <div class="card card-body" style="background: rgba(0,0,0,0); border: 0px;">
+                        <div class="col-lg text-center">
+                            <p>
+                              
+                              <input type="hidden" name="result" id="myBtn" value="" style="background: black; border-style:none;">
+                              
+                              <h3><button onclick="myFunction()" class="btn btn-primary">Generate Report</button></h3>
+                            </p>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        
+
+      </form>
+    </div>    
+</section>
+
+
+
+<div class="container" style="background: white; border-radius: 30px; padding: 30px;">
+  <table id="example" class="table table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Doctor Name</th>
+            <th>Designation</th>
+            <th>Department</th>
+            <th>{{fees}}</th>
+            <th>{{rat}}</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+      {% for dest in dests %}
+        <tr>
+            <td> <form method="GET">
+              {% csrf_token %}
+              <input type="hidden" name="res" id="myBtn2" value="{{dest.4}}" style="background: white; color: black;border-style:none;">
+              
+              <button class="btn btn-primary text-start" style="background: white; color: black;width: 100%;">{{dest.2}}</button>
+               </form></td>
+            <td>{{dest.6}}</td>
+            <td>{{dest.1}}</td>
+            <td>{{dest.3}}</td>
+            <td>{{dest.5}}</td>
+            
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+    
+</table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br>
+
+          <!--Footer-->
+          <footer class="bg-dark text-white pt-5 pb-4">
+            <div class="container text-center text-md-left">
+                <div class="row text-center text-md-left">
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">
+                            Dr. I Need
+                        </h5>
+                        <p>YOUR NEED, OUR PRIORITY</p>
+                    </div>
+                    <div class="col-md-2 col-lg-2 col-xl-2 text-start mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">
+                            Our Partners
+                        </h5>
+                        <P><a href="#c1" class="text-white" style="text-decoration: none;" >
+                            Hospitals
+                        </a></P>
+                        <P><a href="#c1" class="text-white" style="text-decoration: none;" >
+                            Doctors
+                        </a></P>
+                        <P><a href="#c1" class="text-white" style="text-decoration: none;" >
+                            Government Directories
+                        </a></P>
+                        <P><a href="#c1" class="text-white" style="text-decoration: none;" >
+                            Gnews
+                        </a></P>
+                    </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 text-start mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">
+                            Useful links
+                        </h5>
+                        <P><a href="#c1" class="text-white" style="text-decoration: none;" >
+                            HOME
+                        </a></P>
+                        <P><a href="#c1" class="text-white" style="text-decoration: none;" >
+                            ABOUT
+                        </a></P>
+                        <P><a href="#c1" class="text-white" style="text-decoration: none;" >
+                            FAQ
+                        </a></P>
+                        <P><a href="/find_d" class="text-white" style="text-decoration: none;" >
+                            SUGGESTIONS
+                        </a></P>
+                        <P><a href="#c1" class="text-white" style="text-decoration: none;" >
+                            NEWS
+                        </a></P>
+                    </div>
+                    <div class="col-md-4 col-lg-3 col-xl-3 text-start mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">
+                            Contact Us
+                        </h5>
+                        <P>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                                <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                              </svg> Mohakhali, Dhaka-1212
+                        </P>
+                        <P>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                                <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                              </svg> +8801757789212
+                        </P>
+                        <P>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                              </svg> drineed@gmail.com
+                        </P>
+                        <P>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+                              </svg> Dr. I Need
+                        </P>
+                    </div>
+                </div>
+            </div>
+        </footer>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+            <script>
+              const ultlist = [1,2,3]
+              function myFunction1() {
+                var x1 = document.getElementById("dep1").value;              
+                 ultlist[0] = x1
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction2() { 
+                var x2 = document.getElementById("dep2").value;
+                ultlist[0] = x2 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction3() { 
+                var x3 = document.getElementById("dep3").value;
+                ultlist[0] = x3 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction4() { 
+                var x4 = document.getElementById("dep4").value;
+                ultlist[0] = x4 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction5() { 
+                var x5 = document.getElementById("dep5").value;
+                ultlist[0] = x5 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction6() { 
+                var x6 = document.getElementById("dep6").value;
+                ultlist[0] = x6 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction7() { 
+                var x7 = document.getElementById("dep7").value;
+                ultlist[0] = x7 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction8() { 
+                var x8 = document.getElementById("dep8").value;
+                ultlist[0] = x8
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction9() { 
+                var x9 = document.getElementById("dep9").value;
+                ultlist[0] = x9 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction10() { 
+                var x10 = document.getElementById("dep10").value;
+                ultlist[0] = x10 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction11() { 
+                var x10 = document.getElementById("dep11").value;
+                ultlist[0] = x10 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction12() { 
+                var x10 = document.getElementById("dep12").value;
+                ultlist[0] = x10 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction13() { 
+                var x10 = document.getElementById("dep13").value;
+                ultlist[0] = x10 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction14() { 
+                var x10 = document.getElementById("dep14").value;
+                ultlist[0] = x10 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction15() { 
+                var x10 = document.getElementById("dep15").value;
+                ultlist[0] = x10 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction16() { 
+                var x10 = document.getElementById("dep16").value;
+                ultlist[0] = x10 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction17() { 
+                var x10 = document.getElementById("dep17").value;
+                ultlist[0] = x10 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction18() { 
+                var x10 = document.getElementById("dep18").value;
+                ultlist[0] = x10 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction19() { 
+                var x10 = document.getElementById("dep19").value;
+                ultlist[0] = x10 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction20() { 
+                var x10 = document.getElementById("dep20").value;
+                ultlist[0] = x10 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction21() { 
+                var x10 = document.getElementById("dep21").value;
+                ultlist[0] = x10 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction22() { 
+                var x11 = document.getElementById("dep22").value;
+                ultlist[1] = x11 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction23() { 
+                var x11 = document.getElementById("dep23").value;
+                ultlist[1] = x11 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction24() { 
+                var x12 = document.getElementById("dep24").value;
+                ultlist[2] = x12 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction25() { 
+                var x12 = document.getElementById("dep25").value;
+                ultlist[2] = x12 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction100() { 
+                var x12 = document.getElementById("dep100").value;
+                ultlist[0] = x12 
+                document.getElementById("demo").innerHTML = ultlist;
+              }
+              function myFunction() {
+  document.getElementById("myBtn").value = ultlist;}
+              
+              
+              
+              </script>
+          </body>
+</html>        
+ 

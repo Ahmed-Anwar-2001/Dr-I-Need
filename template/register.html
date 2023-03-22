@@ -1,0 +1,117 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign Up</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <style>
+      *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        }
+        body{
+            min-height: 100vh;
+            width: 100%;
+            background-image: url("/static/images/t6.jpg");
+            
+            /*background-position: center;*/
+            background-size: cover;
+           
+            
+            background-repeat: no-repeat;
+        }
+        .btn1{
+            border: none;
+            outline: none;
+            height: 50px;
+            width: 100%;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        .a1:link, .a1:visited {
+            border: none;
+            outline: none;
+            height: 50px;
+            width: 100%;
+            background-color: black;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .a1:hover, .a1:active {
+            background-color: white;
+            color: black;
+        }
+    </style>
+
+  
+</head>
+  <body>
+    <div class="row gx-0">
+        <div class="container">
+        <div class="col-lg-7 px-5 pt-0 pb-1">
+            <h1>Dr. I Need</h1>
+            <h4>Sign up form</h4>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                    <p>Name :</p>
+                    <div class="col-lg-7">
+                        <input type="name" placeholder="Name" name='Name' class="form-control my-1 p-2" required>
+                    </div>
+                </div>
+                <p>Email :</p>
+                <div class="form-row">
+                    <div class="col-lg-7">
+                        <input type="email" placeholder="Email Address" name='Email' class="form-control my-1 p-2" required>
+                    </div>
+                </div>
+                <p>Gender :</p>
+                <div class="form-row">
+                    <div class="col-lg-7">
+                        <input type="radio" id="Male" name="Gender" value="Male" required>
+                        <label for="Male">Male</label>
+                        <input type="radio" id="Female" name="Gender" value="Female" required>
+                        <label for="Female">Female</label><br>
+                    </div>
+                </div>
+                <p>Phone :</p>
+                <div class="form-row">
+                    <div class="col-lg-7">
+                        <input type="number" placeholder="Phone Number" name='Phone' class="form-control my-1 p-2" required>
+                    </div>
+                </div>
+                <p>Date of birth :</p>
+                <div class="form-row">
+                    <div class="col-lg-7">
+                        <input type="date" name='Date_of_birth' class="form-control my-1 p-2" required>
+                    </div>
+                </div>
+                <p>Password :</p>
+                <div class="form-row">
+                    <div class="col-lg-7">
+                        <input type="password" placeholder="Password" name='Password' class="form-control my-1 p-2" required>
+                    </div>
+                </div>
+                <p><input type="checkbox" required> I agree to the <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank">Terms and Conditions</a></p>
+                <div class="form-row">
+                    <div class="col-lg-7">
+                        <button type="submit" class="btn1 btn-success"><a href="/index">Register</a></button>
+                    </div>
+                </div>
+                
+                <p>Already have an account? <a href="/l1">Sign in</a></p>
+            </form>
+        </div></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </body>
+</html>
