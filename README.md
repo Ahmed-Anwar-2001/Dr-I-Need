@@ -13,6 +13,6 @@ This is my source code for a Doctor Recommending Website
 
 
 Checkout the website hosted at pythonanywhere.com-  
-drineed.pythonanywhere.com  
+[drineed.pythonanywhere.com]  
 
 The website doesn't contain the news content due to space limitations for free hosting
