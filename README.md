@@ -16,7 +16,9 @@ Checkout the website hosted at pythonanywhere.com-
 (drineed.pythonanywhere.com)
 
 To demo login you can use:  
-email-naruto123@gmail.com
-password-test2
+
+email- naruto123@gmail.com
+
+password- test2
 
 The website doesn't contain the news content due to space limitations for free hosting
